@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Home of Fitness">
+  <rect width="64" height="64" rx="14" fill="#0b0b0b" />
+  <path d="M16 38V26h4v8l12-10 12 10v-8h4v12h-4V30L32 18 20 30v8z" fill="#fff" />
+  <path d="M24 42h16v4H24z" fill="#fff" />
+</svg>
+
