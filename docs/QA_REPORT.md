@@ -3,7 +3,7 @@
 Final decision: APPROVED FOR CLIENT REVIEW
 
 Release branch: `feat/home-of-fitness-build`
-Release SHA: `pending commit`
+Release SHA: `87b78dc`
 Date: 2026-07-25
 Preview URL: `http://127.0.0.1:4173/`
 Specification version: `PROJECT.md` as supplied in this repository
@@ -56,7 +56,7 @@ Specification version: `PROJECT.md` as supplied in this repository
 
 ## Commit and Push Ledger
 
-- Local commit not yet created at time of writing.
+- Local release commit: `87b78dc` (`feat(home-of-fitness): complete tasks T001-T010`).
 - Push not yet performed because no remote is configured in this workspace.
 
 ## Final Reviewer Notes

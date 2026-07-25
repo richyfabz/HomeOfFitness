@@ -34,5 +34,5 @@
   - The repository still emits three React Fast Refresh warnings, but they do not block the build or tests.
   - Lighthouse on the home route passes the documented performance, accessibility, best-practices and SEO thresholds.
   - A live Vercel deployment has not been produced in this workspace.
-- Ending SHA: `pending commit`
+- Ending SHA: `87b78dc`
 - Next state: `COMPLETE`
