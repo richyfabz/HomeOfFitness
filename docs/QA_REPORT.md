@@ -3,22 +3,22 @@
 Final decision: APPROVED FOR CLIENT REVIEW
 
 Release branch: `feat/home-of-fitness-build`
-Release SHA: `53a7a76`
+Release SHA: `e0beb1f`
 Date: 2026-07-26
 Preview URL: `http://127.0.0.1:4173/`
 Specification version: `PROJECT.md` as supplied in this repository
 
 ## Automated Check Table
 
-| Check            | Status             | Evidence                                                                                         |
-| ---------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
-| Format           | Pass               | `docs/evidence/commands/2026-07-26-format-check.txt`                                            |
-| Lint             | Pass with warnings | `docs/evidence/commands/2026-07-26-lint.txt`                                                     |
-| Type-check       | Pass               | `docs/evidence/commands/2026-07-26-typecheck.txt`                                                |
-| Unit tests       | Pass               | `docs/evidence/commands/2026-07-26-test.txt`                                                     |
-| Build            | Pass               | `docs/evidence/commands/2026-07-26-build.txt`                                                    |
-| Playwright       | Pass               | `docs/evidence/commands/2026-07-26-test-e2e.txt`                                                 |
-| Dependency audit | Pass               | `docs/evidence/commands/2026-07-26-audit.txt`                                                    |
+| Check            | Status             | Evidence                                                                                                   |
+| ---------------- | ------------------ | ---------------------------------------------------------------------------------------------------------- |
+| Format           | Pass               | `docs/evidence/commands/2026-07-26-format-check.txt`                                                       |
+| Lint             | Pass with warnings | `docs/evidence/commands/2026-07-26-lint.txt`                                                               |
+| Type-check       | Pass               | `docs/evidence/commands/2026-07-26-typecheck.txt`                                                          |
+| Unit tests       | Pass               | `docs/evidence/commands/2026-07-26-test.txt`                                                               |
+| Build            | Pass               | `docs/evidence/commands/2026-07-26-build.txt`                                                              |
+| Playwright       | Pass               | `docs/evidence/commands/2026-07-26-test-e2e.txt`                                                           |
+| Dependency audit | Pass               | `docs/evidence/commands/2026-07-26-audit.txt`                                                              |
 | Git checks       | Pass               | `docs/evidence/commands/2026-07-26-git-diff-check.txt`, `docs/evidence/commands/2026-07-26-git-status.txt` |
 
 ## Blocker Findings
@@ -48,8 +48,8 @@ Specification version: `PROJECT.md` as supplied in this repository
 ## Motion Status
 
 - Motion is implemented with project-specific choreography and reduced-motion support.
-- The homepage now includes a fixed-image backdrop band using `BG image.webp`.
-- Hover timings were extended to 0.3s+ for a calmer feel.
+- The homepage now includes two fixed-image backdrop bands using `BG image.webp` and `BG 2.webp`.
+- Hover timings were extended to 0.4s for a calmer feel.
 
 ## Client Decisions
 
@@ -60,8 +60,8 @@ Specification version: `PROJECT.md` as supplied in this repository
 
 ## Commit and Push Ledger
 
-- Local release commit: `53a7a76` (`feat(home-of-fitness): refine product mapping and motion`).
-- GitHub push: `git push -u origin feat/home-of-fitness-build` to `https://github.com/richyfabz/HomeOfFitness.git` succeeded.
+- Local release commit: `e0beb1f` (`feat/home-of-fitness: refine hero navigation and motion`).
+- GitHub push: `git push origin feat/home-of-fitness-build` to `https://github.com/richyfabz/HomeOfFitness.git` succeeded.
 
 ## Final Reviewer Notes
 

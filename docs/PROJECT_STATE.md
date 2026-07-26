@@ -18,14 +18,15 @@
   - Record the release SHA and push evidence.
 - Completed tasks:
   - New product imagery was classified and mapped to the shop catalogue.
-  - `BG image.webp` now powers a scrolling backdrop band on the homepage.
+  - The homepage hero was redesigned into a cohesive full-width opener instead of a split blank layout.
+  - `BG image.webp` and `BG 2.webp` now power scroll-linked monochrome backdrop bands on the homepage.
+  - Defensive image fallback handling was added for product cards and galleries.
   - The navbar was shortened with a primary set plus an Explore dropdown.
-  - Hover timings were extended to a calmer 0.3s+ feel.
-  - Reference-priced products now display current public online pricing and avoid stock certainty.
-  - The shop order and product detail routes were updated to surface the new items first.
-  - Format, lint, type-check, unit tests, build, Playwright and dependency audit all passed.
+  - The footer was rebuilt into a compact multi-column navigation block.
+  - Hover timings were extended to a calmer 0.4s feel with off-white feedback.
+  - Reference-priced products still display current public online pricing and avoid stock certainty.
+  - Format, lint, type-check, unit tests, build, Playwright, audit and Git checks all passed.
   - Evidence logs were written under `docs/evidence/commands/`.
-  - The release branch was committed and pushed to the requested GitHub repository.
 - Commands:
   - `npm run format:check`
   - `npm run lint`
@@ -36,10 +37,11 @@
   - `npm audit --omit=dev`
   - `git diff --check`
   - `git status --short`
-  - `git push -u origin feat/home-of-fitness-build`
+  - `git diff --check`
+  - `git status --short`
 - Findings:
   - The only remaining lint output is the pre-existing React Fast Refresh warnings in `src/components/Motion.tsx` and `src/context/CartContext.tsx`.
   - A missing asset reference was removed from `src/data/imageManifest.ts`, clearing the build warning.
-  - The workspace now has a pushed GitHub branch, but a production deployment is still separate from this local repo task.
-- Ending SHA: `53a7a76`
+  - The workspace is ready for the final commit and push step, but production deployment is still separate from this local repo task.
+- Ending SHA: `e0beb1f`
 - Next state: `COMPLETE`
