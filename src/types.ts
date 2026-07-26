@@ -5,7 +5,7 @@ export type NavItem = {
   href: string;
 };
 
-export type PricingStatus = "sample" | "enquiry-only";
+export type PricingStatus = "sample" | "enquiry-only" | "reference";
 
 export type MembershipPlan = {
   id: string;
@@ -86,6 +86,9 @@ export type Product = {
   material?: string;
   careInstructions?: string[];
   pricingStatus: PricingStatus;
+  pricingSource?: string;
+  pricingSourceUrl?: string;
+  pricingNote?: string;
 };
 
 export type FaqItem = {

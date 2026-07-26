@@ -26,3 +26,20 @@ Status: complete
 ## Notes
 
 - Client-only facts such as final business contact details, final prices, stock and deployment URLs remain to be confirmed where the spec requires them.
+
+## Batch T011-T020
+
+Status: complete
+
+| ID   | Major task                                                     | Acceptance criteria                                                                 | Evidence                                                                                  |
+| ---- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| T011 | Map the newly added product images to catalogue items          | Each new `img/` asset is assigned to the most appropriate product or utility usage. | `src/data/imageManifest.ts`, `src/data/commerceData.ts`                                   |
+| T012 | Add current public reference pricing for the new product set   | Catalogue items display honest reference prices sourced from current retailer pages. | `src/data/commerceData.ts`, `src/pages/ProductPage.tsx`, `src/pages/ShopPage.tsx`         |
+| T013 | Shorten the top navigation with a dropdown                    | Primary nav is compact and the secondary pages are grouped into a dropdown.          | `src/components/Layout.tsx`, `src/styles/global.css`                                      |
+| T014 | Add a full-width scrolling background band on the homepage     | `BG image.webp` is used as a backdrop without leaving the hero area static.         | `src/pages/HomePage.tsx`, `src/styles/global.css`                                          |
+| T015 | Slow and refine hover interactions                             | Hover transitions are visually smoother and last at least 0.3 seconds.              | `src/styles/global.css`                                                                   |
+| T016 | Keep reference listings honest in product and cart flows       | Reference items are clearly labelled and never claim final stock certainty.          | `src/components/Commerce.tsx`, `src/pages/ProductPage.tsx`, `src/pages/CartPage.tsx`      |
+| T017 | Update the shop ordering and tests                             | The catalogue surfaces the new items first and the shop test reflects that order.    | `src/data/commerceData.ts`, `src/pages/ShopPage.test.tsx`                                  |
+| T018 | Re-run formatting, linting, type-checking, tests and build     | All required quality checks pass after the content and layout changes.               | `docs/evidence/commands/2026-07-26-*.txt`                                                 |
+| T019 | Re-run Playwright coverage and dependency audit                | E2E flows pass and `npm audit --omit=dev` is clean.                                   | `docs/evidence/commands/2026-07-26-test-e2e.txt`, `docs/evidence/commands/2026-07-26-audit.txt` |
+| T020 | Capture evidence for the final release bundle                  | Command logs exist for the final verification set.                                   | `docs/evidence/commands/2026-07-26-*.txt`                                                 |

@@ -13,8 +13,6 @@ export const imageManifest = {
   downloadTwoWebp: new URL("../../img/download (2).webp", import.meta.url).href,
   downloadThreeWebp: new URL("../../img/download (3).webp", import.meta.url)
     .href,
-  downloadFourWebp: new URL("../../img/download (4).webp", import.meta.url)
-    .href,
   downloadFiveWebp: new URL("../../img/download (5).webp", import.meta.url)
     .href,
   downloadSixWebp: new URL("../../img/download (6).webp", import.meta.url).href,
@@ -37,10 +35,6 @@ export const imageManifest = {
   fitnessLogo: new URL("../../img/fitness logo.jfif", import.meta.url).href,
   circuitTraining: new URL(
     "../../img/Full Body Circuit Training.jfif",
-    import.meta.url,
-  ).href,
-  gigantesco: new URL(
-    "../../img/GIGANTESCO MUSCULOSO  GRITANDO.webp",
     import.meta.url,
   ).href,
   groupWorkout: new URL(
@@ -77,6 +71,32 @@ export const imageManifest = {
   ).href,
   gymDesignRef: new URL(
     "../../img/Дизайн тренажерного зала_ Пожалуйста, предоставьте список названий_.webp",
+    import.meta.url,
+  ).href,
+  bgImage: new URL("../../img/BG image.webp", import.meta.url).href,
+  accessoryKit: new URL(
+    "../../img/6186A5j57dL._AC_UY1100_.jpg",
+    import.meta.url,
+  ).href,
+  jumpRopeKit: new URL(
+    "../../img/61JQQ7Y5B0L._AC_UF894,1000_QL80_.jpg",
+    import.meta.url,
+  ).href,
+  dumbbellSet: new URL("../../img/71i0a59ZvBL.jpg", import.meta.url).href,
+  chromeDumbbellSet: new URL(
+    "../../img/91S4cU5pT1L._AC_UF894_1000_QL80_FMwebp_480x480.webp",
+    import.meta.url,
+  ).href,
+  chestExpander: new URL(
+    "../../img/Chest-Expander-Muscle-Training-Resistance-Exercise-Bands-Gym-Fitness-Equipment-Pull-Rope.avif",
+    import.meta.url,
+  ).href,
+  kettlebell: new URL(
+    "../../img/OzQvwVeWEiOYq8VxemYHLNGyA2Sx3OJ91614347671.webp",
+    import.meta.url,
+  ).href,
+  medicineBall: new URL(
+    "../../img/different-sports-equipment-and-fitness-ball-in-gym-photo.jpeg",
     import.meta.url,
   ).href,
 } as const;

@@ -24,13 +24,14 @@ export function ProductPage() {
   );
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState("");
+  const isReferenceListing = product?.pricingStatus === "reference";
 
   useDocumentMeta(
     product
       ? `${product.name} | Home of Fitness`
       : "Product not found | Home of Fitness",
     product
-      ? `${product.name} sample product page with gallery, variants and add to cart support.`
+      ? `${product.name} product page with gallery, variants and add to cart support.`
       : "The requested product could not be found.",
   );
 
@@ -93,8 +94,9 @@ export function ProductPage() {
             ) : null}
           </div>
           <p className="product-detail__note">
-            Sample catalogue item. Prices, stock and imagery can be replaced
-            once the client confirms the final collection.
+            {isReferenceListing
+              ? "Current public online reference price. Stock and delivery availability can change with the retailer, so this stays browse-first and transparent."
+              : "Sample catalogue item. Prices, stock and imagery can be replaced once the client confirms the final collection."}
           </p>
           <form className="product-form" onSubmit={handleSubmit}>
             {requiresSize ? (
@@ -139,18 +141,14 @@ export function ProductPage() {
                 className="control"
                 type="number"
                 min={1}
-                max={Math.min(9, product.stock || 9)}
+                max={9}
                 value={quantity}
                 onChange={(event) => setQuantity(Number(event.target.value))}
               />
             </label>
 
-            <button
-              className="button button--solid"
-              type="submit"
-              disabled={product.stock <= 0}
-            >
-              Add to cart
+            <button className="button button--solid" type="submit">
+              {isReferenceListing ? "Add reference item" : "Add to cart"}
             </button>
             <Link className="button button--ghost" to="/shop">
               Back to shop
@@ -165,9 +163,14 @@ export function ProductPage() {
             <p>
               <strong>Material:</strong> {product.material || "Pending"}
             </p>
+            {isReferenceListing && product.pricingSource ? (
+              <p>
+                <strong>Reference:</strong> {product.pricingSource}
+              </p>
+            ) : null}
             <p>
               <strong>Care:</strong>{" "}
-              {product.careInstructions?.join(" · ") || "Pending"}
+              {product.careInstructions?.join(" - ") || "Pending"}
             </p>
           </div>
         </div>

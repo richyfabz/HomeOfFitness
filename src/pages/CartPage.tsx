@@ -47,7 +47,7 @@ export function CartPage() {
                     <h2>{product?.name || "Product unavailable"}</h2>
                     <p>
                       {item.size ? `Size: ${item.size}` : "Size: not required"}{" "}
-                      ·{" "}
+                      -{" "}
                       {item.colour
                         ? `Colour: ${item.colour}`
                         : "Colour: not required"}
@@ -119,7 +119,7 @@ export function CartPage() {
         ) : (
           <EmptyState
             title="Your cart is empty"
-            description="Add a sample product from the shop to test the persistent cart."
+            description="Add an item from the shop to test the persistent cart."
             action={{ label: "View the shop", href: "/shop" }}
           />
         )}

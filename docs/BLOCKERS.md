@@ -3,5 +3,5 @@
 ## None currently
 
 - The workspace is usable.
-- No external credentials are needed for the initial implementation work.
-- The main open risk is image provenance, which must be documented before any production release.
+- No external credentials are needed for the current implementation work.
+- The only remaining release-step work is commit, push and any later deployment hand-off outside this workspace.

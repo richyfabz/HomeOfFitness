@@ -87,6 +87,18 @@ export function MembershipComparison({ plans }: { plans: MembershipPlan[] }) {
 export function ProductCard({ product }: { product: Product }) {
   const image = product.imageKeys[0] ?? "darkGym";
   const [hovered, setHovered] = useState(false);
+  const pricingLabel =
+    product.pricingStatus === "sample"
+      ? "Sample price"
+      : product.pricingStatus === "reference"
+        ? "Online reference price"
+        : "Enquiry only";
+  const stockLabel =
+    product.pricingStatus === "reference"
+      ? "Reference listing"
+      : product.stock > 0
+        ? `${product.stock} in sample stock`
+        : "Out of stock";
 
   return (
     <article
@@ -100,11 +112,13 @@ export function ProductCard({ product }: { product: Product }) {
       >
         <ImageFrame
           src={image}
-          alt={`${product.name} sample image`}
+          alt={`${product.name} product image`}
           caption={
             product.pricingStatus === "sample"
               ? "Sample price pending client confirmation"
-              : undefined
+              : product.pricingStatus === "reference"
+                ? "Online reference listing"
+                : undefined
           }
         />
       </Link>
@@ -117,6 +131,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
         <p className="product-card__desc">{product.description}</p>
         <div className="product-card__meta">
+          <span className="badge badge--compact">{pricingLabel}</span>
           <strong>{formatNaira(product.price)}</strong>
           {product.compareAtPrice ? (
             <span className="product-card__compare">
@@ -125,11 +140,7 @@ export function ProductCard({ product }: { product: Product }) {
           ) : null}
         </div>
         <div className="product-card__footer">
-          <span>
-            {product.stock > 0
-              ? `${product.stock} in sample stock`
-              : "Out of stock"}
-          </span>
+          <span>{stockLabel}</span>
           <Link
             className={`text-link ${hovered ? "is-hovered" : ""}`}
             to={`/shop/${product.slug}`}
@@ -158,7 +169,7 @@ export function ProductGallery({
       <figure className="product-gallery__stage">
         <ImageFrame
           src={activeImage}
-          alt={`${product.name} sample image ${selectedIndex + 1}`}
+          alt={`${product.name} product image ${selectedIndex + 1}`}
           caption={
             product.pricingStatus === "sample"
               ? "Sample product image"
@@ -189,13 +200,19 @@ export function ProductGallery({
 }
 
 export function ProductBadges({ product }: { product: Product }) {
+  const pricingLabel =
+    product.pricingStatus === "sample"
+      ? "Sample price"
+      : product.pricingStatus === "reference"
+        ? "Online reference price"
+        : "Enquiry only";
   return (
     <div className="badge-row">
       <span className="badge">{product.category}</span>
-      <span className="badge">
-        {product.pricingStatus === "sample" ? "Sample price" : "Live price"}
-      </span>
-      {product.stock > 0 ? (
+      <span className="badge">{pricingLabel}</span>
+      {product.pricingStatus === "reference" ? (
+        <span className="badge">Reference listing</span>
+      ) : product.stock > 0 ? (
         <span className="badge">In sample stock</span>
       ) : (
         <span className="badge">Out of stock</span>

@@ -25,6 +25,23 @@ export const navigation: NavItem[] = [
   { label: "Cart", href: "/cart" },
 ];
 
+export const primaryNavigation: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "Membership", href: "/membership" },
+  { label: "Shop", href: "/shop" },
+];
+
+export const exploreNavigation: NavItem[] = [
+  { label: "Classes", href: "/classes" },
+  { label: "Trainers", href: "/trainers" },
+  { label: "Facilities", href: "/facilities" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+];
+
 export const contactDetails = {
   email: contactEmail,
   phone: "",
@@ -318,7 +335,7 @@ export const faqGroups: SiteFaqGroup[] = [
       {
         question: "Are product prices final?",
         answer:
-          "No. The catalogue uses sample prices to test the shopping experience, and those prices are clearly marked as configurable.",
+          "The shop now uses current online reference prices sourced from public retail listings. They may change with retailer availability, delivery charges and stock movement.",
       },
       {
         question: "Does the cart persist after refresh?",

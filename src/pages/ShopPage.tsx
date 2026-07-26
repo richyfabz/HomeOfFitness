@@ -78,7 +78,7 @@ export function ShopPage() {
         secondary={{ label: "Open the cart", href: "/cart" }}
         image={imageManifest.tevoLift}
         imageAlt="Lift collection apparel image"
-        note="All prices are sample figures and are clearly labelled in the product detail flow."
+        note="Sample items remain clearly labelled, while the new reference listings show current public online prices sourced from retailer pages."
       />
 
       <MotionSection className="section">
@@ -160,8 +160,8 @@ export function ShopPage() {
       <MotionSection className="section">
         <div className="cta-band">
           <p>
-            The shop is transparent about sample pricing and stock levels so the
-            experience stays honest.
+            The shop is transparent about sample pricing, reference pricing and
+            stock uncertainty so the experience stays honest.
           </p>
           <Link className="button button--ghost" to="/cart">
             Review cart

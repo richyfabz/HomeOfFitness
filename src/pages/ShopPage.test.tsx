@@ -22,6 +22,6 @@ describe("ShopPage", () => {
     await user.selectOptions(screen.getByLabelText("Sort"), "price-desc");
 
     const headings = screen.getAllByRole("heading", { level: 3 });
-    expect(headings[0]).toHaveTextContent("Carryall Bag");
+    expect(headings[0]).toHaveTextContent("Gym Duffel Bag");
   });
 });

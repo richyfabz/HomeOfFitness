@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavLink, Link } from "react-router-dom";
-import { navigation, siteName, contactDetails } from "../data/siteData";
+import {
+  navigation,
+  primaryNavigation,
+  exploreNavigation,
+  siteName,
+  contactDetails,
+} from "../data/siteData";
 import { useMotionAwareVariants } from "./Motion";
 import { useCart } from "../context/CartContext";
 
@@ -83,7 +89,7 @@ function SiteHeader() {
       </Link>
 
       <nav className="site-nav" aria-label="Primary">
-        {navigation.slice(0, -1).map((item) => (
+        {primaryNavigation.map((item) => (
           <NavLink
             key={item.href}
             to={item.href}
@@ -94,6 +100,24 @@ function SiteHeader() {
             {item.label}
           </NavLink>
         ))}
+        <details className="site-nav__dropdown">
+          <summary className="site-nav__link site-nav__summary">
+            Explore
+          </summary>
+          <div className="site-nav__dropdown-panel">
+            {exploreNavigation.map((item) => (
+              <NavLink
+                key={item.href}
+                to={item.href}
+                className={({ isActive }) =>
+                  `site-nav__dropdown-link ${isActive ? "is-active" : ""}`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        </details>
       </nav>
 
       <div className="site-header__actions">
@@ -125,18 +149,45 @@ function SiteHeader() {
             exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -12 }}
             transition={{ duration: reduceMotion ? 0 : 0.22, ease: "easeOut" }}
           >
-            {navigation.map((item) => (
-              <NavLink
-                key={item.href}
-                to={item.href}
-                className={({ isActive }) =>
-                  `mobile-menu__link ${isActive ? "is-active" : ""}`
-                }
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            <div className="mobile-menu__group">
+              <p className="mobile-menu__eyebrow">Primary</p>
+              {primaryNavigation.map((item) => (
+                <NavLink
+                  key={item.href}
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `mobile-menu__link ${isActive ? "is-active" : ""}`
+                  }
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+            <div className="mobile-menu__group">
+              <p className="mobile-menu__eyebrow">Explore</p>
+              {exploreNavigation.map((item) => (
+                <NavLink
+                  key={item.href}
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `mobile-menu__link ${isActive ? "is-active" : ""}`
+                  }
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                `mobile-menu__link ${isActive ? "is-active" : ""}`
+              }
+              onClick={() => setOpen(false)}
+            >
+              Cart
+            </NavLink>
           </motion.div>
         ) : null}
       </AnimatePresence>
@@ -182,7 +233,7 @@ function SiteFooter() {
         </div>
       </div>
       <p className="site-footer__meta">
-        © 2026 Home of Fitness. Client-review build.
+        (c) 2026 Home of Fitness. Client-review build.
       </p>
     </footer>
   );

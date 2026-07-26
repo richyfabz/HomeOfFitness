@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   brandPromise,
   classes,
@@ -37,7 +38,7 @@ export function HomePage() {
         secondary={{ label: "Explore classes", href: "/classes" }}
         image={imageManifest.darkGym}
         imageAlt="Dark gym aesthetic for Home of Fitness hero"
-        note="Prices shown elsewhere on the site are sample figures pending client confirmation."
+        note="Prices shown elsewhere on the site are sample or reference figures and are labelled honestly per product."
       />
 
       <MotionSection className="section section--narrow">
@@ -89,6 +90,35 @@ export function HomePage() {
         </div>
       </MotionSection>
 
+      <motion.section className="section section--backdrop">
+        <div className="home-backdrop">
+          <div
+            className="home-backdrop__image"
+            aria-hidden="true"
+            style={{ backgroundImage: `url(${imageManifest.bgImage})` }}
+          />
+          <div className="home-backdrop__overlay">
+            <p className="eyebrow">Editorial movement</p>
+            <h2>
+              One image, scrolled with restraint, to stop the page feeling flat.
+            </h2>
+            <p>
+              The background band uses the new gym image as a full-width visual
+              anchor, with motion that tracks the page scroll rather than
+              relying on a generic fade.
+            </p>
+            <div className="home-backdrop__actions">
+              <Link className="button button--solid" to="/shop">
+                Browse the shop
+              </Link>
+              <Link className="button button--ghost" to="/facilities">
+                See the facilities
+              </Link>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
       <MotionSection className="section">
         <SectionHeading
           eyebrow="Classes"
@@ -107,7 +137,7 @@ export function HomePage() {
                 <h3>{fitnessClass.name}</h3>
                 <p>{fitnessClass.description}</p>
                 <p className="feature-card__meta">
-                  {fitnessClass.durationMinutes} mins · {fitnessClass.level} ·{" "}
+                  {fitnessClass.durationMinutes} mins - {fitnessClass.level} -{" "}
                   {fitnessClass.intensity}
                 </p>
               </div>
@@ -185,7 +215,7 @@ export function HomePage() {
         <SectionHeading
           eyebrow="Shop"
           title="A sample catalogue for apparel and accessories"
-          description="Products are sample entries with transparent price labels so the cart and checkout logic can be tested honestly."
+          description="Products are now led by current public reference listings for the new catalogue items, while sample products remain clearly marked as samples."
         />
         <div className="card-grid card-grid--four">
           {products.slice(0, 4).map((product) => (
