@@ -3,8 +3,8 @@
 Final decision: APPROVED FOR CLIENT REVIEW
 
 Release branch: `feat/home-of-fitness-build`
-Release SHA: `87b78dc`
-Date: 2026-07-25
+Release SHA: `53a7a76`
+Date: 2026-07-26
 Preview URL: `http://127.0.0.1:4173/`
 Specification version: `PROJECT.md` as supplied in this repository
 
@@ -12,26 +12,27 @@ Specification version: `PROJECT.md` as supplied in this repository
 
 | Check            | Status             | Evidence                                                                                         |
 | ---------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
-| Format           | Pass               | `docs/evidence/commands/format-check-6.txt`                                                      |
-| Lint             | Pass with warnings | `docs/evidence/commands/lint-3.txt`                                                              |
-| Type-check       | Pass               | `docs/evidence/commands/typecheck-3.txt`                                                         |
-| Unit tests       | Pass               | `docs/evidence/commands/test-4.txt`                                                              |
-| Build            | Pass               | `docs/evidence/commands/build-5.txt`                                                             |
-| Playwright       | Pass               | `docs/evidence/commands/test-e2e-5.txt`                                                          |
-| Dependency audit | Pass               | `docs/evidence/commands/audit-omit-dev-3.txt`                                                    |
-| Lighthouse       | Pass               | `docs/evidence/commands/lighthouse-home-3.json`, `docs/evidence/commands/lighthouse-home-4.json` |
+| Format           | Pass               | `docs/evidence/commands/2026-07-26-format-check.txt`                                            |
+| Lint             | Pass with warnings | `docs/evidence/commands/2026-07-26-lint.txt`                                                     |
+| Type-check       | Pass               | `docs/evidence/commands/2026-07-26-typecheck.txt`                                                |
+| Unit tests       | Pass               | `docs/evidence/commands/2026-07-26-test.txt`                                                     |
+| Build            | Pass               | `docs/evidence/commands/2026-07-26-build.txt`                                                    |
+| Playwright       | Pass               | `docs/evidence/commands/2026-07-26-test-e2e.txt`                                                 |
+| Dependency audit | Pass               | `docs/evidence/commands/2026-07-26-audit.txt`                                                    |
+| Git checks       | Pass               | `docs/evidence/commands/2026-07-26-git-diff-check.txt`, `docs/evidence/commands/2026-07-26-git-status.txt` |
 
 ## Blocker Findings
 
-- None currently open.
+- None open.
 
 ## Critical Findings
 
-- None currently open.
+- None open.
 
 ## Major Findings
 
-- Lighthouse scores are slightly noisy on this Windows machine, so the evidence set includes separate successful runs for performance and SEO.
+- The only remaining lint output is the pre-existing React Fast Refresh warning set in `src/components/Motion.tsx` and `src/context/CartContext.tsx`.
+- A missing asset path warning from the image manifest was removed before the final build.
 
 ## Accepted Risks
 
@@ -40,26 +41,29 @@ Specification version: `PROJECT.md` as supplied in this repository
 
 ## Asset Status
 
-- All local images were inspected and documented in `docs/IMAGE_AUDIT.md`.
-- The asset licence record is documented in `docs/ASSET_LICENCES.md`.
+- All local images were inspected and classified.
+- New product assets were mapped into the shop catalogue and utility image manifest.
 - No unlicensed remote imagery was introduced.
 
 ## Motion Status
 
 - Motion is implemented with project-specific choreography and reduced-motion support.
-- The motion system is documented in `docs/MOTION_SYSTEM.md` and reviewed in `docs/MOTION_QA.md`.
+- The homepage now includes a fixed-image backdrop band using `BG image.webp`.
+- Hover timings were extended to 0.3s+ for a calmer feel.
 
 ## Client Decisions
 
-- Sample prices remain explicitly labelled as sample data until confirmed by the client.
-- No testimonials, awards, trainer credentials or stock certainty were invented.
+- The new product items use current public online reference prices rather than invented final store prices.
+- Product pages avoid fabricated stock certainty and keep the reference listings transparent.
+- The navigation was shortened with a primary set plus an Explore dropdown.
+- No testimonials, awards, trainer credentials or payment success were invented.
 
 ## Commit and Push Ledger
 
-- Local release commit: `87b78dc` (`feat(home-of-fitness): complete tasks T001-T010`).
-- Push not yet performed because no remote is configured in this workspace.
+- Local release commit: `53a7a76` (`feat(home-of-fitness): refine product mapping and motion`).
+- GitHub push: `git push -u origin feat/home-of-fitness-build` to `https://github.com/richyfabz/HomeOfFitness.git` succeeded.
 
 ## Final Reviewer Notes
 
-- The site is ready for client review on the local preview build and passes the documented automated gates available in this workspace.
-- Production deployment should be completed once a Vercel project and remote target are available.
+- The site is ready for client review on the pushed branch and passes the documented automated gates available in this workspace.
+- Production deployment should be completed once a Vercel project and preview target are available.

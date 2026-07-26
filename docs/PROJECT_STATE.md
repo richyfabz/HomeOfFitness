@@ -2,37 +2,44 @@
 
 ## RELEASE_READINESS
 
-- Start time: 2026-07-25T23:52:52.7923540+01:00
+- Start time: 2026-07-26T00:11:02.0000000+01:00
 - Branch: `feat/home-of-fitness-build`
-- Starting SHA: `worktree awaiting final commit`
+- Starting SHA: `53a7a76`
 - Planned tasks:
-  - Re-run the dependency audit after the `react-router` override.
-  - Capture fresh build, test and browser evidence after the latest performance changes.
-  - Measure Lighthouse on the production build.
-  - Write the required QA and release documents.
-  - Refresh the implementation ledger with verified evidence.
-  - Commit the release-ready worktree.
-  - Push when a remote is available.
+  - Map the newly added `img/` assets into product and utility usage.
+  - Replace the static blank home section with a fixed-image backdrop band.
+  - Condense the desktop navigation into a dropdown-led header.
+  - Slow the hover language so interactions feel deliberate rather than abrupt.
+  - Keep reference pricing honest and clearly labelled.
+  - Re-run the quality gates after the content and motion updates.
+  - Capture evidence for the verification loop.
+  - Commit the finalised changes.
+  - Push the release branch to the requested GitHub repository.
+  - Record the release SHA and push evidence.
 - Completed tasks:
-  - Audit is clean with `npm audit --omit=dev`.
-  - Type-check, format check, lint, unit tests, Playwright tests and build all pass.
-  - Home route Lighthouse performance now reaches 91 with 100 accessibility and 100 best practices.
-  - Route splitting reduced the initial JS bundle from 419.75 kB to 374.91 kB gzip 121.75 kB.
-  - The manual preview server was verified locally and the browser suite re-ran cleanly afterwards.
+  - New product imagery was classified and mapped to the shop catalogue.
+  - `BG image.webp` now powers a scrolling backdrop band on the homepage.
+  - The navbar was shortened with a primary set plus an Explore dropdown.
+  - Hover timings were extended to a calmer 0.3s+ feel.
+  - Reference-priced products now display current public online pricing and avoid stock certainty.
+  - The shop order and product detail routes were updated to surface the new items first.
+  - Format, lint, type-check, unit tests, build, Playwright and dependency audit all passed.
+  - Evidence logs were written under `docs/evidence/commands/`.
+  - The release branch was committed and pushed to the requested GitHub repository.
 - Commands:
-  - `npm install`
-  - `npm audit --omit=dev`
   - `npm run format:check`
   - `npm run lint`
   - `npm run typecheck`
   - `npm run test`
   - `npm run build`
   - `npm run test:e2e`
-  - `npx lighthouse http://127.0.0.1:4173/ --output=json --output-path=docs/evidence/commands/lighthouse-home-3.json --chrome-flags="--headless=new --no-sandbox"`
+  - `npm audit --omit=dev`
+  - `git diff --check`
+  - `git status --short`
+  - `git push -u origin feat/home-of-fitness-build`
 - Findings:
-  - `react-router` was the only dependency security issue and is now resolved by override.
-  - The repository still emits three React Fast Refresh warnings, but they do not block the build or tests.
-  - Lighthouse on the home route passes the documented performance, accessibility, best-practices and SEO thresholds.
-  - A live Vercel deployment has not been produced in this workspace.
-- Ending SHA: `87b78dc`
+  - The only remaining lint output is the pre-existing React Fast Refresh warnings in `src/components/Motion.tsx` and `src/context/CartContext.tsx`.
+  - A missing asset reference was removed from `src/data/imageManifest.ts`, clearing the build warning.
+  - The workspace now has a pushed GitHub branch, but a production deployment is still separate from this local repo task.
+- Ending SHA: `53a7a76`
 - Next state: `COMPLETE`
