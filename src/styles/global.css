@@ -549,10 +549,10 @@ button {
   width: calc(100% + (var(--gutter) * 2));
   margin-inline: calc(var(--gutter) * -1);
   overflow: clip;
-  min-height: clamp(34rem, 92vw, 48rem);
+  min-height: clamp(28rem, 68vw, 40rem);
   padding: clamp(1.1rem, 2vw, 1.8rem) var(--gutter) clamp(1.8rem, 4vw, 3.2rem);
   display: grid;
-  align-items: end;
+  align-items: start;
   border-bottom: 1px solid var(--line);
 }
 
@@ -592,7 +592,7 @@ button {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   gap: 1.5rem;
-  align-items: end;
+  align-items: start;
 }
 
 .home-hero__content > .eyebrow {
