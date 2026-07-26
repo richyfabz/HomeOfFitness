@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavLink, Link } from "react-router-dom";
 import {
-  navigation,
+  footerNavigationGroups,
   primaryNavigation,
   exploreNavigation,
   siteName,
@@ -89,7 +89,7 @@ function SiteHeader() {
       </Link>
 
       <nav className="site-nav" aria-label="Primary">
-        {primaryNavigation.map((item) => (
+        {primaryNavigation.slice(0, 3).map((item) => (
           <NavLink
             key={item.href}
             to={item.href}
@@ -118,6 +118,17 @@ function SiteHeader() {
             ))}
           </div>
         </details>
+        {primaryNavigation.slice(3).map((item) => (
+          <NavLink
+            key={item.href}
+            to={item.href}
+            className={({ isActive }) =>
+              `site-nav__link ${isActive ? "is-active" : ""}`
+            }
+          >
+            {item.label}
+          </NavLink>
+        ))}
       </nav>
 
       <div className="site-header__actions">
@@ -198,24 +209,31 @@ function SiteHeader() {
 function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="site-footer__brand">
-        <p className="eyebrow">Home of Fitness</p>
-        <p>
-          Premium black-and-white fitness branding with memberships, classes,
-          trainers and commerce.
+      <div className="site-footer__intro">
+        <div className="site-footer__brand">
+          <p className="eyebrow">Home of Fitness</p>
+          <p>
+            Premium black-and-white fitness branding with memberships, classes,
+            trainers and commerce.
+          </p>
+        </div>
+        <p className="site-footer__meta">
+          Copyright 2026 Home of Fitness. All rights reserved.
         </p>
       </div>
       <div className="site-footer__links">
-        <div>
-          <h2>Navigate</h2>
-          <ul>
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link to={item.href}>{item.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {footerNavigationGroups.map((group) => (
+          <div key={group.title}>
+            <h2>{group.title}</h2>
+            <ul>
+              {group.items.map((item) => (
+                <li key={item.href}>
+                  <Link to={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
         <div>
           <h2>Contact</h2>
           <ul>
@@ -232,9 +250,6 @@ function SiteFooter() {
           </ul>
         </div>
       </div>
-      <p className="site-footer__meta">
-        (c) 2026 Home of Fitness. Client-review build.
-      </p>
     </footer>
   );
 }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useMotionAwareVariants } from "./Motion";
@@ -40,8 +41,10 @@ export function PageHero({
   image: string;
   imageAlt: string;
   note?: string;
+  fallbackImage?: string;
 }) {
   const { reduceMotion } = useMotionAwareVariants();
+  const heroImage = image;
   return (
     <section className="hero">
       <div className="hero__content">
@@ -68,7 +71,7 @@ export function PageHero({
         }}
       >
         <img
-          src={image}
+          src={heroImage}
           alt={imageAlt}
           className="hero__image"
           loading="eager"
@@ -85,21 +88,37 @@ export function ImageFrame({
   alt,
   caption,
   priority = false,
+  fallbackSrc,
 }: {
   src: string;
   alt: string;
   caption?: string | undefined;
   priority?: boolean;
+  fallbackSrc?: string;
 }) {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [usedFallback, setUsedFallback] = useState(false);
+
+  useEffect(() => {
+    setCurrentSrc(src);
+    setUsedFallback(false);
+  }, [src]);
+
   return (
     <figure className="image-frame">
       <img
-        src={src}
+        src={currentSrc}
         alt={alt}
         className="image-frame__image"
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
+        onError={() => {
+          if (fallbackSrc && !usedFallback) {
+            setUsedFallback(true);
+            setCurrentSrc(fallbackSrc);
+          }
+        }}
       />
       {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>

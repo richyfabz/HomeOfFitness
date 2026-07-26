@@ -28,18 +28,50 @@ export const navigation: NavItem[] = [
 export const primaryNavigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Membership", href: "/membership" },
+  { label: "Classes", href: "/classes" },
   { label: "Shop", href: "/shop" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const exploreNavigation: NavItem[] = [
-  { label: "Classes", href: "/classes" },
   { label: "Trainers", href: "/trainers" },
   { label: "Facilities", href: "/facilities" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
+];
+
+export const footerNavigationGroups = [
+  {
+    title: "Explore",
+    items: [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Trainers", href: "/trainers" },
+      { label: "Facilities", href: "/facilities" },
+      { label: "FAQ", href: "/faq" },
+    ],
+  },
+  {
+    title: "Membership and classes",
+    items: [
+      { label: "Membership", href: "/membership" },
+      { label: "Classes", href: "/classes" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Shop and support",
+    items: [
+      { label: "Shop", href: "/shop" },
+      { label: "Cart", href: "/cart" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
+  {
+    title: "Contact",
+    items: [{ label: "Contact", href: "/contact" }],
+  },
 ];
 
 export const contactDetails = {

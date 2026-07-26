@@ -29,3 +29,18 @@
 
 - Status: Accepted
 - Rationale: The desktop header is shorter and easier to scan when primary routes stay visible and the less critical routes are grouped into a single dropdown.
+
+## D007 - The homepage uses two monochrome backdrop bands for motion
+
+- Status: Accepted
+- Rationale: `BG image.webp` and `BG 2.webp` are used as scroll-linked backdrop bands so the homepage feels more editorial and less static without introducing new imagery or colour noise.
+
+## D008 - Product and gallery images fall back to a local designed asset
+
+- Status: Accepted
+- Rationale: Product cards and galleries now fall back to a local background image so missing or broken product assets do not leave empty tiles in the catalogue.
+
+## D009 - Hover feedback standardises on off-white contrast with a 0.4s rhythm
+
+- Status: Accepted
+- Rationale: Shared hover and focus states now use a slower, calmer timing with visible off-white contrast so the interface feels deliberate rather than abrupt.

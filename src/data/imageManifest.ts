@@ -74,6 +74,7 @@ export const imageManifest = {
     import.meta.url,
   ).href,
   bgImage: new URL("../../img/BG image.webp", import.meta.url).href,
+  bgImage2: new URL("../../img/BG 2.webp", import.meta.url).href,
   accessoryKit: new URL(
     "../../img/6186A5j57dL._AC_UY1100_.jpg",
     import.meta.url,

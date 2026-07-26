@@ -1,4 +1,6 @@
+warning: in the working copy of 'docs/DECISIONS.md', LF will be replaced by CRLF the next time Git touches it
 warning: in the working copy of 'docs/IMPLEMENTATION_LEDGER.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/PROJECT_STATE.md', LF will be replaced by CRLF the next time Git touches it
 warning: in the working copy of 'docs/QA_REPORT.md', LF will be replaced by CRLF the next time Git touches it
 warning: in the working copy of 'docs/evidence/commands/2026-07-26-git-diff-check.txt', LF will be replaced by CRLF the next time Git touches it
 warning: in the working copy of 'src/components/Commerce.tsx', LF will be replaced by CRLF the next time Git touches it

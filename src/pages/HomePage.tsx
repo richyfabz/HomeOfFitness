@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useScroll, useTransform } from "framer-motion";
 import {
   brandPromise,
   classes,
@@ -11,12 +13,7 @@ import {
 import { products } from "../data/commerceData";
 import { imageManifest } from "../data/imageManifest";
 import { MotionSection, useMotionAwareVariants } from "../components/Motion";
-import {
-  ImageFrame,
-  PageHero,
-  SectionHeading,
-  StatStrip,
-} from "../components/Shared";
+import { ImageFrame, SectionHeading, StatStrip } from "../components/Shared";
 import { MembershipCard, ProductCard } from "../components/Commerce";
 import { useDocumentMeta } from "../components/Seo";
 
@@ -30,16 +27,41 @@ export function HomePage() {
 
   return (
     <div className="page-stack">
-      <PageHero
-        eyebrow={brandPromise.eyebrow}
-        title="Home of Fitness"
-        description={brandPromise.summary}
-        primary={{ label: "Compare memberships", href: "/membership" }}
-        secondary={{ label: "Explore classes", href: "/classes" }}
-        image={imageManifest.darkGym}
-        imageAlt="Dark gym aesthetic for Home of Fitness hero"
-        note="Prices shown elsewhere on the site are sample or reference figures and are labelled honestly per product."
-      />
+      <section className="home-hero">
+        <motion.div
+          className="home-hero__bg"
+          aria-hidden="true"
+          initial={reduceMotion ? { opacity: 1 } : { opacity: 0.96 }}
+          animate={reduceMotion ? { opacity: 1 } : { opacity: 1 }}
+          transition={{ duration: reduceMotion ? 0 : 0.45, ease: "easeOut" }}
+          style={{ backgroundImage: `url(${imageManifest.darkGym})` }}
+        />
+        <div className="home-hero__overlay" aria-hidden="true" />
+        <div className="home-hero__content">
+          <p className="eyebrow">{brandPromise.eyebrow}</p>
+          <div className="home-hero__lede">
+            <h1>Home of Fitness</h1>
+            <p>{brandPromise.summary}</p>
+          </div>
+          <div className="home-hero__actions">
+            <Link className="button button--solid" to="/membership">
+              Compare memberships
+            </Link>
+            <Link className="button button--ghost" to="/classes">
+              Explore classes
+            </Link>
+          </div>
+          <div className="home-hero__meta">
+            <StatStrip
+              items={[
+                { label: "Membership", value: "Enquiry-led, clearly labelled" },
+                { label: "Classes", value: "Compact, scannable, mobile-first" },
+                { label: "Shop", value: "Reference prices and sample stock" },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
 
       <MotionSection className="section section--narrow">
         <div className="eyebrow-row">
@@ -77,6 +99,15 @@ export function HomePage() {
         </div>
       </MotionSection>
 
+      <ScrollBackdrop
+        image={imageManifest.bgImage}
+        eyebrow="Editorial movement"
+        title="A full-width background band that keeps the page alive."
+        description="The new backdrop runs in motion with the scroll rather than sitting as a static block, which keeps the homepage from feeling empty."
+        primary={{ label: "Browse the shop", href: "/shop" }}
+        secondary={{ label: "See the facilities", href: "/facilities" }}
+      />
+
       <MotionSection className="section">
         <SectionHeading
           eyebrow="Membership"
@@ -90,34 +121,15 @@ export function HomePage() {
         </div>
       </MotionSection>
 
-      <motion.section className="section section--backdrop">
-        <div className="home-backdrop">
-          <div
-            className="home-backdrop__image"
-            aria-hidden="true"
-            style={{ backgroundImage: `url(${imageManifest.bgImage})` }}
-          />
-          <div className="home-backdrop__overlay">
-            <p className="eyebrow">Editorial movement</p>
-            <h2>
-              One image, scrolled with restraint, to stop the page feeling flat.
-            </h2>
-            <p>
-              The background band uses the new gym image as a full-width visual
-              anchor, with motion that tracks the page scroll rather than
-              relying on a generic fade.
-            </p>
-            <div className="home-backdrop__actions">
-              <Link className="button button--solid" to="/shop">
-                Browse the shop
-              </Link>
-              <Link className="button button--ghost" to="/facilities">
-                See the facilities
-              </Link>
-            </div>
-          </div>
-        </div>
-      </motion.section>
+      <ScrollBackdrop
+        image={imageManifest.bgImage2}
+        eyebrow="Monochrome detail"
+        title="A second fixed-image section gives the page a stronger rhythm."
+        description="This band uses the companion background asset so the composition can breathe without leaving blank space behind."
+        primary={{ label: "Open trainers", href: "/trainers" }}
+        secondary={{ label: "Read FAQ", href: "/faq" }}
+        mirrored
+      />
 
       <MotionSection className="section">
         <SectionHeading
@@ -246,5 +258,59 @@ export function HomePage() {
         </div>
       </MotionSection>
     </div>
+  );
+}
+
+function ScrollBackdrop({
+  image,
+  eyebrow,
+  title,
+  description,
+  primary,
+  secondary,
+  mirrored = false,
+}: {
+  image: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  primary: { label: string; href: string };
+  secondary: { label: string; href: string };
+  mirrored?: boolean;
+}) {
+  const ref = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    mirrored ? ["-12%", "12%"] : ["12%", "-12%"],
+  );
+
+  return (
+    <motion.section ref={ref} className="section section--backdrop">
+      <div className="home-backdrop">
+        <motion.div
+          className="home-backdrop__image"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${image})`, y }}
+        />
+        <div className="home-backdrop__overlay">
+          <p className="eyebrow">{eyebrow}</p>
+          <h2>{title}</h2>
+          <p>{description}</p>
+          <div className="home-backdrop__actions">
+            <Link className="button button--solid" to={primary.href}>
+              {primary.label}
+            </Link>
+            <Link className="button button--ghost" to={secondary.href}>
+              {secondary.label}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </motion.section>
   );
 }

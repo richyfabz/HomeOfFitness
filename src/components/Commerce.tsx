@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { MembershipPlan, Product } from "../types";
 import { formatNaira, formatSamplePrice } from "../lib/money";
+import { imageManifest } from "../data/imageManifest";
 import { ImageFrame } from "./Shared";
 
 export function MembershipCard({ plan }: { plan: MembershipPlan }) {
@@ -87,6 +88,7 @@ export function MembershipComparison({ plans }: { plans: MembershipPlan[] }) {
 export function ProductCard({ product }: { product: Product }) {
   const image = product.imageKeys[0] ?? "darkGym";
   const [hovered, setHovered] = useState(false);
+  const fallbackImage = imageManifest.bgImage2 ?? imageManifest.bgImage;
   const pricingLabel =
     product.pricingStatus === "sample"
       ? "Sample price"
@@ -113,6 +115,7 @@ export function ProductCard({ product }: { product: Product }) {
         <ImageFrame
           src={image}
           alt={`${product.name} product image`}
+          fallbackSrc={fallbackImage}
           caption={
             product.pricingStatus === "sample"
               ? "Sample price pending client confirmation"
@@ -164,12 +167,14 @@ export function ProductGallery({
 }) {
   const activeImage =
     product.imageKeys[selectedIndex] ?? product.imageKeys[0] ?? "darkGym";
+  const fallbackImage = imageManifest.bgImage2 ?? imageManifest.bgImage;
   return (
     <div className="product-gallery">
       <figure className="product-gallery__stage">
         <ImageFrame
           src={activeImage}
           alt={`${product.name} product image ${selectedIndex + 1}`}
+          fallbackSrc={fallbackImage}
           caption={
             product.pricingStatus === "sample"
               ? "Sample product image"
@@ -191,7 +196,15 @@ export function ProductGallery({
             onClick={() => onSelectIndex(index)}
             aria-pressed={index === selectedIndex}
           >
-            <img src={image} alt="" aria-hidden="true" />
+            <img
+              src={image}
+              alt=""
+              aria-hidden="true"
+              onError={(event) => {
+                event.currentTarget.onerror = null;
+                event.currentTarget.src = fallbackImage;
+              }}
+            />
           </button>
         ))}
       </div>
