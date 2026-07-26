@@ -56,7 +56,6 @@ export const footerNavigationGroups = [
     items: [
       { label: "Membership", href: "/membership" },
       { label: "Classes", href: "/classes" },
-      { label: "Contact", href: "/contact" },
     ],
   },
   {
@@ -67,10 +66,6 @@ export const footerNavigationGroups = [
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
     ],
-  },
-  {
-    title: "Contact",
-    items: [{ label: "Contact", href: "/contact" }],
   },
 ];
 

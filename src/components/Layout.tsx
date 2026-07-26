@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import {
   footerNavigationGroups,
   primaryNavigation,
@@ -37,8 +37,18 @@ function SiteHeader() {
   const [solid, setSolid] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
+  const location = useLocation();
   const { reduceMotion } = useMotionAwareVariants();
   const { itemCount } = useCart();
+  const isExploreActive = useMemo(
+    () =>
+      exploreNavigation.some(
+        (item) =>
+          location.pathname === item.href ||
+          location.pathname.startsWith(`${item.href}/`),
+      ),
+    [location.pathname],
+  );
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 24);
@@ -100,7 +110,9 @@ function SiteHeader() {
             {item.label}
           </NavLink>
         ))}
-        <details className="site-nav__dropdown">
+        <details
+          className={`site-nav__dropdown ${isExploreActive ? "is-active" : ""}`}
+        >
           <summary className="site-nav__link site-nav__summary">
             Explore
           </summary>
@@ -190,15 +202,18 @@ function SiteHeader() {
                 </NavLink>
               ))}
             </div>
-            <NavLink
-              to="/cart"
-              className={({ isActive }) =>
-                `mobile-menu__link ${isActive ? "is-active" : ""}`
-              }
-              onClick={() => setOpen(false)}
-            >
-              Cart
-            </NavLink>
+            <div className="mobile-menu__group">
+              <p className="mobile-menu__eyebrow">Cart</p>
+              <NavLink
+                to="/cart"
+                className={({ isActive }) =>
+                  `mobile-menu__link ${isActive ? "is-active" : ""}`
+                }
+                onClick={() => setOpen(false)}
+              >
+                Cart <span aria-hidden="true">({itemCount})</span>
+              </NavLink>
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>
@@ -223,7 +238,7 @@ function SiteFooter() {
       </div>
       <div className="site-footer__links">
         {footerNavigationGroups.map((group) => (
-          <div key={group.title}>
+          <div key={group.title} className="site-footer__group">
             <h2>{group.title}</h2>
             <ul>
               {group.items.map((item) => (

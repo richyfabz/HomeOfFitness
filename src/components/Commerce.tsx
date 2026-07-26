@@ -6,17 +6,27 @@ import { imageManifest } from "../data/imageManifest";
 import { ImageFrame } from "./Shared";
 
 export function MembershipCard({ plan }: { plan: MembershipPlan }) {
+  const pricingLabel =
+    plan.pricingStatus === "sample"
+      ? "Sample pricing"
+      : plan.pricingStatus === "reference"
+        ? "Reference pricing"
+        : "Enquire for current pricing";
+
   return (
     <article
       className={`membership-card ${plan.featured ? "is-featured" : ""}`}
     >
       <div className="membership-card__top">
-        <p className="eyebrow">{plan.featured ? "Recommended" : "Plan"}</p>
+        <div className="badge-row">
+          <span className="badge">{plan.featured ? "Featured" : "Plan"}</span>
+          <span className="badge">{pricingLabel}</span>
+        </div>
         <h3>{plan.name}</h3>
         <p>{plan.description}</p>
       </div>
       <div className="membership-card__price">
-        <strong>{formatSamplePrice(plan.price)}</strong>
+        <strong>{formatSamplePrice(plan.price, "Enquire for current pricing")}</strong>
         <span>{plan.billingPeriod}</span>
       </div>
       <ul className="list list--tight">
@@ -27,6 +37,16 @@ export function MembershipCard({ plan }: { plan: MembershipPlan }) {
       {plan.exclusions?.length ? (
         <p className="membership-card__note">
           Note: {plan.exclusions.join(" ")}
+        </p>
+      ) : null}
+      {plan.availability ? (
+        <p className="membership-card__availability">
+          Availability:{" "}
+          {plan.availability === "coming-soon"
+            ? "Coming soon"
+            : plan.availability === "available"
+              ? "Available"
+              : "Enquiry only"}
         </p>
       ) : null}
       <Link className="button button--ghost" to="/contact">
@@ -45,42 +65,79 @@ export function MembershipComparison({ plans }: { plans: MembershipPlan[] }) {
     "Joining fee",
   ];
 
+  const planRows = plans.map((plan) => ({
+    plan,
+    values: rows.map((row) => {
+      const rowKey = row.toLowerCase().split(" ")[0] ?? "";
+      const hasFeature = plan.features.some((feature) =>
+        feature.toLowerCase().includes(rowKey),
+      );
+      return row === "Joining fee"
+        ? plan.joiningFee
+          ? formatNaira(plan.joiningFee)
+          : "Pending"
+        : hasFeature
+          ? "Included"
+          : "Not listed";
+    }),
+  }));
+
   return (
-    <div className="comparison-wrap">
-      <table className="comparison">
-        <thead>
-          <tr>
-            <th scope="col">Feature</th>
-            {plans.map((plan) => (
-              <th key={plan.id} scope="col">
-                {plan.name}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row}>
-              <th scope="row">{row}</th>
-              {plans.map((plan) => {
-                const rowKey = row.toLowerCase().split(" ")[0] ?? "";
-                const hasFeature = plan.features.some((feature) =>
-                  feature.toLowerCase().includes(rowKey),
-                );
-                const value =
-                  row === "Joining fee"
-                    ? plan.joiningFee
-                      ? formatNaira(plan.joiningFee)
-                      : "Pending"
-                    : hasFeature
-                      ? "Included"
-                      : "Not listed";
-                return <td key={`${plan.id}-${row}`}>{value}</td>;
-              })}
+    <div className="comparison-block">
+      <p className="comparison__note">
+        Desktop users can scan the full comparison table. Mobile users get
+        stacked plan cards with the same information.
+      </p>
+      <div className="comparison-wrap">
+        <table className="comparison">
+          <thead>
+            <tr>
+              <th scope="col">Feature</th>
+              {plans.map((plan) => (
+                <th key={plan.id} scope="col">
+                  {plan.name}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row, rowIndex) => (
+              <tr key={row}>
+                <th scope="row">{row}</th>
+                {planRows.map(({ plan, values }) => (
+                  <td key={`${plan.id}-${row}`}>{values[rowIndex]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="comparison-mobile" aria-label="Membership comparison cards">
+        {planRows.map(({ plan, values }) => (
+          <article key={plan.id} className="comparison-mobile__card">
+            <div className="membership-card__top">
+              <div className="badge-row">
+                <span className="badge">{plan.name}</span>
+                <span className="badge">
+                  {plan.featured ? "Featured" : "Plan"}
+                </span>
+              </div>
+              <p>{plan.description}</p>
+            </div>
+            <dl className="comparison-mobile__list">
+              {rows.map((row, rowIndex) => (
+                <div key={`${plan.id}-${row}`} className="comparison-mobile__item">
+                  <dt>{row}</dt>
+                  <dd>{values[rowIndex]}</dd>
+                </div>
+              ))}
+            </dl>
+            <Link className="button button--ghost" to="/contact">
+              Enquire about membership
+            </Link>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }
