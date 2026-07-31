@@ -1,5 +1,32 @@
 # IMPLEMENTATION LEDGER
 
+## Batch T031-T040
+
+Status: complete
+
+| ID   | Major task                                     | Acceptance criteria                                                                            | Evidence                                                                |
+| ---- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| T031 | Restore visible section rendering              | Motion-wrapped sections never remain blank after the first hero section.                       | `src/components/Motion.tsx`, browser verification                       |
+| T032 | Resolve commerce image key lookup              | Product cards and galleries resolve through the shared manifest instead of raw key strings.    | `src/components/Commerce.tsx`                                           |
+| T033 | Curate the homepage shop preview               | The home shop preview shows a varied set of images rather than adjacent duplicate accessories. | `src/pages/HomePage.tsx`                                                |
+| T034 | Re-run formatter after code fixes              | Prettier accepts the touched files and no formatting drift remains.                            | `npm run format:check`                                                  |
+| T035 | Re-run TypeScript and production build         | TypeScript and the Vite production build pass after the repair.                                | `npm run typecheck`, `npm run build`                                    |
+| T036 | Re-run unit coverage                           | The existing component and page tests pass after the repair.                                   | `npm run test`                                                          |
+| T037 | Re-run lint                                    | ESLint completes successfully and only the pre-existing warnings remain.                       | `npm run lint`                                                          |
+| T038 | Verify the repaired routes in a browser        | Home and shop render with visible sections and distinct mapped product images.                 | `docs/screenshots/home/1440.png`, `docs/screenshots/shop/1440.png`      |
+| T039 | Confirm mapped asset resolution in the browser | The first visible product cards resolve to different actual asset URLs.                        | Playwright browser inspection                                           |
+| T040 | Update project records and evidence            | State, ledger and decision records match the repaired implementation.                          | `docs/PROJECT_STATE.md`, `docs/DECISIONS.md`, `docs/evidence/commands/` |
+
+## Batch Result
+
+- The motion wrapper was made fail-safe by keeping sections visible while they animate, which prevents the blank-page failure mode.
+- The commerce image lookup was corrected so product cards and galleries use the manifest-resolved asset URLs.
+- The homepage shop preview now mixes four different assets, avoiding the repeated accessory fallback look.
+- The homepage facilities band now uses the bench station asset and the store/home image blocks were scaled down so they feel less overpowering.
+- The Explore dropdown now opens and closes with hover/focus state instead of staying latched until a click.
+- The browser now confirms the home facilities image, the first visible product cards and the Explore dropdown state resolve correctly.
+- Format, lint, type-check, unit tests and production build all passed after the repair.
+
 ## Batch T001-T010
 
 Status: complete

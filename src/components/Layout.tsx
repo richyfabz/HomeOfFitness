@@ -34,6 +34,7 @@ function SkipLink() {
 
 function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [exploreOpen, setExploreOpen] = useState(false);
   const [solid, setSolid] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -100,11 +101,27 @@ function SiteHeader() {
             {item.label}
           </NavLink>
         ))}
-        <details className="site-nav__dropdown">
-          <summary className="site-nav__link site-nav__summary">
+        <div
+          className={`site-nav__dropdown ${exploreOpen ? "is-open" : ""}`}
+          onMouseEnter={() => setExploreOpen(true)}
+          onMouseLeave={() => setExploreOpen(false)}
+          onFocusCapture={() => setExploreOpen(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setExploreOpen(false);
+            }
+          }}
+        >
+          <button
+            type="button"
+            className="site-nav__link site-nav__summary"
+            aria-haspopup="menu"
+            aria-expanded={exploreOpen}
+            onClick={() => setExploreOpen((current) => !current)}
+          >
             Explore
-          </summary>
-          <div className="site-nav__dropdown-panel">
+          </button>
+          <div className="site-nav__dropdown-panel" role="menu">
             {exploreNavigation.map((item) => (
               <NavLink
                 key={item.href}
@@ -112,12 +129,15 @@ function SiteHeader() {
                 className={({ isActive }) =>
                   `site-nav__dropdown-link ${isActive ? "is-active" : ""}`
                 }
+                role="menuitem"
+                tabIndex={exploreOpen ? 0 : -1}
+                onClick={() => setExploreOpen(false)}
               >
                 {item.label}
               </NavLink>
             ))}
           </div>
-        </details>
+        </div>
         {primaryNavigation.slice(3).map((item) => (
           <NavLink
             key={item.href}

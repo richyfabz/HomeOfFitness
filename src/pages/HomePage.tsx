@@ -10,11 +10,10 @@ import {
   membershipPlans,
   trainers,
 } from "../data/siteData";
-import { products } from "../data/commerceData";
 import { imageManifest } from "../data/imageManifest";
 import { MotionSection, useMotionAwareVariants } from "../components/Motion";
 import { ImageFrame, SectionHeading, StatStrip } from "../components/Shared";
-import { MembershipCard, ProductCard } from "../components/Commerce";
+import { MembershipCard } from "../components/Commerce";
 import { useDocumentMeta } from "../components/Seo";
 
 export function HomePage() {
@@ -24,6 +23,29 @@ export function HomePage() {
   );
 
   const { reduceMotion } = useMotionAwareVariants();
+  const shopPreview = [
+    {
+      title: "Grip training",
+      description: "Compact accessory work with a hand-focused strength tool.",
+      imageKey: "handGripper",
+    },
+    {
+      title: "Load control",
+      description: "A clean adjustable dumbbell reference for the store edit.",
+      imageKey: "adjustableDumbbells",
+    },
+    {
+      title: "Layered tee",
+      description:
+        "A darker apparel shot that reads like a premium gym staple.",
+      imageKey: "blackOversizedTee",
+    },
+    {
+      title: "Core wheel",
+      description: "A simple conditioning tool for compact training setups.",
+      imageKey: "abWheel",
+    },
+  ] as const;
 
   return (
     <div className="page-stack">
@@ -208,8 +230,9 @@ export function HomePage() {
         <div className="gallery-strip">
           <div className="gallery-strip__media">
             <ImageFrame
-              src={imageManifest.gymEquipmentStory}
+              src={imageManifest.benchPressStation}
               alt="Custom gym equipment story"
+              priority
             />
           </div>
           <div className="gallery-strip__content">
@@ -226,12 +249,23 @@ export function HomePage() {
       <MotionSection className="section">
         <SectionHeading
           eyebrow="Shop"
-          title="A sample catalogue for apparel and accessories"
-          description="Products are now led by current public reference listings for the new catalogue items, while sample products remain clearly marked as samples."
+          title="A lighter store preview"
+          description="The home page now uses a separate image-led edit so it does not repeat the main shop tiles."
         />
-        <div className="card-grid card-grid--four">
-          {products.slice(0, 4).map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="card-grid card-grid--four home-shop-grid">
+          {shopPreview.map((item) => (
+            <article className="home-shop-card" key={item.title}>
+              <ImageFrame
+                src={imageManifest[item.imageKey]}
+                alt={item.title}
+                priority
+              />
+              <div className="home-shop-card__body">
+                <p className="eyebrow">Shop edit</p>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </article>
           ))}
         </div>
         <div className="section__footer">

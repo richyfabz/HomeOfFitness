@@ -1,47 +1,50 @@
 # PROJECT STATE
 
-## RELEASE_READINESS
+## QUALITY_ASSURANCE
 
-- Start time: 2026-07-26T00:11:02.0000000+01:00
+- Start time: 2026-07-29T03:00:00.0000000+01:00
 - Branch: `feat/home-of-fitness-build`
-- Starting SHA: `53a7a76`
+- Starting SHA: `e0beb1f`
 - Planned tasks:
-  - Map the newly added `img/` assets into product and utility usage.
-  - Replace the static blank home section with a fixed-image backdrop band.
-  - Condense the desktop navigation into a dropdown-led header.
-  - Slow the hover language so interactions feel deliberate rather than abrupt.
-  - Keep reference pricing honest and clearly labelled.
-  - Re-run the quality gates after the content and motion updates.
-  - Capture evidence for the verification loop.
-  - Commit the finalised changes.
-  - Push the release branch to the requested GitHub repository.
-  - Record the release SHA and push evidence.
+  - Restore visible section rendering so motion wrappers never leave the page blank.
+  - Resolve the shared commerce image lookup so catalogue cards use the manifest instead of the fallback image.
+  - Curate the homepage shop preview so it shows a varied set of assets rather than adjacent accessory repeats.
+  - Re-run the formatter, lint, type-check, unit tests and production build after the fix.
+  - Verify the rendered home and shop pages in a browser.
+  - Capture updated screenshots for the repaired routes.
+  - Confirm the resolved image sources in the browser.
+  - Record the repair evidence under `docs/evidence/commands/`.
+  - Update the implementation ledger and decisions log.
+  - Prepare the workspace for the next checkpoint or release hand-off.
 - Completed tasks:
-  - New product imagery was classified and mapped to the shop catalogue.
-  - The homepage hero was redesigned into a cohesive full-width opener instead of a split blank layout.
-  - `BG image.webp` and `BG 2.webp` now power scroll-linked monochrome backdrop bands on the homepage.
-  - Defensive image fallback handling was added for product cards and galleries.
-  - The navbar was shortened with a primary set plus an Explore dropdown.
-  - The footer was rebuilt into a compact multi-column navigation block.
-  - Hover timings were extended to a calmer 0.4s feel with off-white feedback.
-  - Reference-priced products still display current public online pricing and avoid stock certainty.
-  - Format, lint, type-check, unit tests, build, Playwright, audit and Git checks all passed.
-  - Evidence logs were written under `docs/evidence/commands/`.
+  - Section motion now starts at a near-visible opacity so the page cannot remain blank if reveal timing stalls.
+  - `ProductCard` and `ProductGallery` now resolve image keys through `imageManifest`, which removed the repeated fallback image on home and shop cards.
+  - The homepage shop preview now uses a curated mix of distinct grip, dumbbell, apparel and core-training images.
+  - The homepage facilities band now uses the bench station asset instead of the older story image.
+  - The homepage shop preview and shop catalogue cards were resized so the image blocks read lighter and less overwhelming.
+  - The Explore navigation item now opens on hover/focus and closes when the pointer leaves the dropdown region.
+  - The homepage hero and backdrop image bands were reduced further so the content below rises up naturally without awkward gaps.
+  - `npm run format:check` passed after formatting the touched files.
+  - `npm run lint` passed with the pre-existing Fast Refresh warnings only.
+  - `npm run typecheck` passed.
+  - `npm run test` passed.
+  - `npm run build` passed.
+  - Browser verification confirmed the home facilities image, the first four home and shop product cards and the Explore dropdown state behave as intended.
+  - Updated screenshots were captured under `docs/screenshots/home/1440.png` and `docs/screenshots/shop/1440.png`.
 - Commands:
   - `npm run format:check`
   - `npm run lint`
   - `npm run typecheck`
   - `npm run test`
   - `npm run build`
-  - `npm run test:e2e`
-  - `npm audit --omit=dev`
   - `git diff --check`
   - `git status --short`
-  - `git diff --check`
-  - `git status --short`
+  - `npx vitest run src/pages/ShopPage.test.tsx --testTimeout 30000 --reporter=verbose`
+  - Browser verification with Playwright against `http://127.0.0.1:4173/` and `/shop`
 - Findings:
-  - The only remaining lint output is the pre-existing React Fast Refresh warnings in `src/components/Motion.tsx` and `src/context/CartContext.tsx`.
-  - A missing asset reference was removed from `src/data/imageManifest.ts`, clearing the build warning.
-  - The workspace is ready for the final commit and push step, but production deployment is still separate from this local repo task.
+  - The blank-page symptom came from a shared motion wrapper that could leave sections too hidden while the reveal animation was pending.
+  - The repeated shop imagery came from passing raw image keys into `<img>` instead of resolving the keys through the manifest.
+  - The browser now shows distinct mapped assets for the curated home preview, the home facilities band and the first shop cards.
+  - The Explore dropdown now closes on pointer exit, which is safer and cleaner than a click-only summary toggle.
 - Ending SHA: `e0beb1f`
-- Next state: `COMPLETE`
+- Next state: `RELEASE_READINESS`

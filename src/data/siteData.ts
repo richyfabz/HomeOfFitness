@@ -163,7 +163,7 @@ export const classes: FitnessClass[] = [
     intensity: "high",
     level: "intermediate",
     trainerIds: ["ade", "nora"],
-    imageKey: "circuitTraining",
+    imageKey: "dumbbellRackCloseup",
     schedule: [
       { day: "Monday", time: "06:30", note: "Morning start" },
       { day: "Wednesday", time: "18:30", note: "After-work session" },
@@ -180,7 +180,7 @@ export const classes: FitnessClass[] = [
     intensity: "low",
     level: "all-levels",
     trainerIds: ["zainab"],
-    imageKey: "joy",
+    imageKey: "recoveryHoodie",
   },
   {
     id: "condition-circle",
@@ -193,7 +193,7 @@ export const classes: FitnessClass[] = [
     intensity: "high",
     level: "all-levels",
     trainerIds: ["ade", "emeka"],
-    imageKey: "groupWorkout",
+    imageKey: "dumbbellWalk",
     schedule: [
       { day: "Tuesday", time: "07:00" },
       { day: "Thursday", time: "19:00" },
@@ -210,7 +210,7 @@ export const classes: FitnessClass[] = [
     intensity: "moderate",
     level: "beginner",
     trainerIds: ["tomi"],
-    imageKey: "watsonLegPress",
+    imageKey: "benchPressStation",
     schedule: [{ day: "Saturday", time: "09:00", note: "Small group format" }],
   },
   {
@@ -224,7 +224,7 @@ export const classes: FitnessClass[] = [
     intensity: "high",
     level: "all-levels",
     trainerIds: ["nora"],
-    imageKey: "sport",
+    imageKey: "dumbbellWalk",
   },
   {
     id: "steady-core",
@@ -237,7 +237,7 @@ export const classes: FitnessClass[] = [
     intensity: "moderate",
     level: "beginner",
     trainerIds: ["zainab"],
-    imageKey: "fitnessInspoWebp",
+    imageKey: "abWheel",
   },
 ];
 
@@ -254,7 +254,7 @@ export const trainers: Trainer[] = [
     ],
     biography:
       "Ade leads strength sessions with a calm, exacting style and an emphasis on repeatable movement quality.",
-    imageKey: "transformCoaching",
+    imageKey: "dumbbellWalk",
     certifications: ["Client-confirmed credentials pending"],
   },
   {
@@ -265,7 +265,7 @@ export const trainers: Trainer[] = [
     specialities: ["Intervals", "Group energy", "Cardio programming"],
     biography:
       "Nora is focused on pacing, technique and keeping high-tempo classes accessible without losing intensity.",
-    imageKey: "groupWorkout",
+    imageKey: "hoodedGymPortrait",
   },
   {
     id: "zainab",
@@ -275,7 +275,7 @@ export const trainers: Trainer[] = [
     specialities: ["Recovery", "Mobility flow", "Beginners"],
     biography:
       "Zainab brings a measured approach to recovery-focused training, helping members move with more confidence.",
-    imageKey: "joy",
+    imageKey: "recoveryHoodie",
   },
   {
     id: "tomi",
@@ -285,7 +285,7 @@ export const trainers: Trainer[] = [
     specialities: ["Foundations", "Machine setup", "Safe lifting"],
     biography:
       "Tomi works with first-time and returning members who want simple, clear coaching around form and setup.",
-    imageKey: "watsonLegPressOne",
+    imageKey: "benchPressStation",
   },
   {
     id: "emeka",
@@ -295,7 +295,7 @@ export const trainers: Trainer[] = [
     specialities: ["Gym-floor support", "Class pacing", "Form cues"],
     biography:
       "Emeka bridges the floor and the class timetable, giving members a dependable point of contact on busy days.",
-    imageKey: "bacak",
+    imageKey: "dumbbellRackCloseup",
   },
 ];
 
@@ -305,28 +305,28 @@ export const facilities: Facility[] = [
     title: "Strength floor",
     description:
       "Free weights, machines and plate-loaded work arranged for direct movement through the floor.",
-    imageKey: "watsonLegPress",
+    imageKey: "benchPressStation",
   },
   {
     id: "conditioning",
     title: "Conditioning space",
     description:
       "A training area suited to intervals, circuits and everyday conditioning work.",
-    imageKey: "circuitTraining",
+    imageKey: "dumbbellRackCloseup",
   },
   {
     id: "recovery",
     title: "Recovery and mobility",
     description:
       "A calmer training zone for mobility, reset work and lower-intensity sessions.",
-    imageKey: "joy",
+    imageKey: "abWheel",
   },
   {
     id: "fit-out",
     title: "Custom fit-out inspiration",
     description:
       "Equipment and space-planning references for a disciplined, premium gym atmosphere.",
-    imageKey: "gymEquipmentStory",
+    imageKey: "dumbbellWalk",
   },
 ];
 
@@ -438,24 +438,24 @@ export const homeSections = [
     title: "Membership",
     summary:
       "A compact comparison that helps visitors understand what is included without page clutter.",
-    imageKey: "fitnessInspoWebp",
+    imageKey: "recoveryHoodie",
   },
   {
     title: "Classes",
     summary:
       "Editorial class cards, schedule hints and clear intensity labels.",
-    imageKey: "groupWorkout",
+    imageKey: "dumbbellWalk",
   },
   {
     title: "Facilities",
     summary:
       "Weight room, conditioning space and recovery-led imagery with a controlled black-and-white mood.",
-    imageKey: "gymAesthetic",
+    imageKey: "benchPressStation",
   },
   {
     title: "Shop",
     summary:
       "A sample product line built to validate the commerce journey before launch.",
-    imageKey: "tevoLift",
+    imageKey: "blackOversizedTee",
   },
 ];

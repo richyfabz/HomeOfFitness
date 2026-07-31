@@ -1,0 +1,21 @@
+Command and verification summary for the July 29, 2026 bug fix.
+
+Checked:
+- `npm run format:check` -> pass
+- `npm run lint` -> pass with existing Fast Refresh warnings only
+- `npm run typecheck` -> pass
+- `npm run test` -> pass
+- `npm run build` -> pass
+- `git diff --check` -> pass
+
+Browser verification:
+- Home route: `http://127.0.0.1:4173/`
+- Shop route: `http://127.0.0.1:4173/shop`
+- Playwright confirmed the first four home and shop product cards resolved to distinct manifest-backed asset URLs after the commerce image lookup fix.
+
+Screenshot evidence:
+- `docs/screenshots/home/1440.png`
+- `docs/screenshots/shop/1440.png`
+
+Tested SHA:
+- `ff6ce4a8a9d610765e0ab671e7263741cac21ef8`

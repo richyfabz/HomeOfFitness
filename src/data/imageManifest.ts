@@ -75,6 +75,46 @@ export const imageManifest = {
   ).href,
   bgImage: new URL("../../img/BG image.webp", import.meta.url).href,
   bgImage2: new URL("../../img/BG 2.webp", import.meta.url).href,
+  abWheel: new URL(
+    "../../img/291fa092f00b20ade6286c50b73a3fff.jpg",
+    import.meta.url,
+  ).href,
+  dumbbellRackCloseup: new URL(
+    "../../img/3b8daf2941e1e382c91c0de75ff365ac.jpg",
+    import.meta.url,
+  ).href,
+  benchPressStation: new URL(
+    "../../img/5e498b195562c5bf104a88fb3496c1d2.jpg",
+    import.meta.url,
+  ).href,
+  hoodedGymPortrait: new URL(
+    "../../img/b00122fabc2ea8a6ac01e14598e28450.webp",
+    import.meta.url,
+  ).href,
+  dumbbellWalk: new URL(
+    "../../img/b95e8a809188c8894cdafcb5c7291c0f.jpg",
+    import.meta.url,
+  ).href,
+  handGripper: new URL(
+    "../../img/cec6ea85ea63d6b0c787da6e634f5f62.jpg",
+    import.meta.url,
+  ).href,
+  adjustableDumbbells: new URL(
+    "../../img/da8496124a02e6b5e6adb320f379a13c.jpg",
+    import.meta.url,
+  ).href,
+  blackOversizedTee: new URL(
+    "../../img/daa01dcd7e88167d12e88d5e107a821b.jpg",
+    import.meta.url,
+  ).href,
+  recoveryHoodie: new URL(
+    "../../img/dae3601b81fca2ee849a269043c26e1f.jpg",
+    import.meta.url,
+  ).href,
+  gripRoller: new URL(
+    "../../img/df95a4081b36dc97f1a39dfa4904b106.jpg",
+    import.meta.url,
+  ).href,
   accessoryKit: new URL(
     "../../img/6186A5j57dL._AC_UY1100_.jpg",
     import.meta.url,

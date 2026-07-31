@@ -86,7 +86,8 @@ export function MembershipComparison({ plans }: { plans: MembershipPlan[] }) {
 }
 
 export function ProductCard({ product }: { product: Product }) {
-  const image = product.imageKeys[0] ?? "darkGym";
+  const imageKey = product.imageKeys[0] ?? "darkGym";
+  const image = imageManifest[imageKey];
   const [hovered, setHovered] = useState(false);
   const fallbackImage = imageManifest.bgImage2 ?? imageManifest.bgImage;
   const pricingLabel =
@@ -165,8 +166,9 @@ export function ProductGallery({
   selectedIndex: number;
   onSelectIndex: (index: number) => void;
 }) {
-  const activeImage =
+  const activeImageKey =
     product.imageKeys[selectedIndex] ?? product.imageKeys[0] ?? "darkGym";
+  const activeImage = imageManifest[activeImageKey];
   const fallbackImage = imageManifest.bgImage2 ?? imageManifest.bgImage;
   return (
     <div className="product-gallery">
@@ -188,25 +190,28 @@ export function ProductGallery({
         role="list"
         aria-label="Product images"
       >
-        {product.imageKeys.map((image, index) => (
-          <button
-            key={image}
-            className={`product-gallery__thumb ${index === selectedIndex ? "is-active" : ""}`}
-            type="button"
-            onClick={() => onSelectIndex(index)}
-            aria-pressed={index === selectedIndex}
-          >
-            <img
-              src={image}
-              alt=""
-              aria-hidden="true"
-              onError={(event) => {
-                event.currentTarget.onerror = null;
-                event.currentTarget.src = fallbackImage;
-              }}
-            />
-          </button>
-        ))}
+        {product.imageKeys.map((image, index) => {
+          const thumbSrc = imageManifest[image];
+          return (
+            <button
+              key={image}
+              className={`product-gallery__thumb ${index === selectedIndex ? "is-active" : ""}`}
+              type="button"
+              onClick={() => onSelectIndex(index)}
+              aria-pressed={index === selectedIndex}
+            >
+              <img
+                src={thumbSrc}
+                alt=""
+                aria-hidden="true"
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = fallbackImage;
+                }}
+              />
+            </button>
+          );
+        })}
       </div>
     </div>
   );

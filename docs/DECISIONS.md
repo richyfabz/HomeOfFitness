@@ -44,3 +44,28 @@
 
 - Status: Accepted
 - Rationale: Shared hover and focus states now use a slower, calmer timing with visible off-white contrast so the interface feels deliberate rather than abrupt.
+
+## D010 - Commerce cards resolve image keys through the shared manifest
+
+- Status: Accepted
+- Rationale: Product data stores semantic image keys, so shared card and gallery components should resolve those keys before rendering. This avoids repeated fallback imagery and keeps the catalogue visually truthful.
+
+## D011 - Motion wrappers must fail safe instead of hiding content completely
+
+- Status: Accepted
+- Rationale: Section reveal motion should never leave important page content at zero opacity if the reveal timing stalls. A near-visible initial state preserves usability and prevents blank-page regressions.
+
+## D012 - The homepage shop preview uses a curated product mix
+
+- Status: Accepted
+- Rationale: The home page should preview a balanced set of images, not a cluster of adjacent accessories. Curating the preview keeps the section varied and avoids accidental visual repetition.
+
+## D013 - Large image sections should stay visually restrained
+
+- Status: Accepted
+- Rationale: The homepage facilities band and the store catalogue should keep their image blocks intentionally smaller on desktop so the page reads as an editorial fitness layout rather than a wall of oversized tiles.
+
+## D014 - The Explore menu should be hover-close, not click-latched
+
+- Status: Accepted
+- Rationale: The desktop Explore menu should open on hover/focus and close as soon as the pointer leaves the dropdown area so it feels responsive and does not block the page header.
